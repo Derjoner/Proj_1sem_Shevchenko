@@ -1,12 +1,18 @@
-s = []
 def Sum(a, b):
-    i = 0
-    x = 0
-    while i != b:
-        s.append(a)
-        a = a + 1
-        i += 1
-    return s
+  i = 1
+  sum = a
+  while i+a <= b:
+    sum = sum + (a+i)
+    i += 1
+  return sum
 
-Sum(a = int(input("Введите первое число: ")), b = int(input("Введите второе число: ")))
-print(sum(s))
+try:
+  n = int(input("Введите первое число < второго: "))
+  m = int(input("Введите второе число > первого: "))
+  if n > m:
+    print("Неправильно ввели! Первое число должно быть меньше второго.")
+  else:
+    print("Сумма числового ряда:", Sum(n, m))
+
+except:
+    print("Неправильно ввели данные!")
