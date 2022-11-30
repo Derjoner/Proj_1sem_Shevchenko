@@ -11,7 +11,7 @@ print("N:", N)
 
 if len(S) > N:
     S = S[(len(S)-N):]
-    print("Изменённая строка", S)
+    print("Изменённая строка:", S)
 elif len(S) < N:
     S = (N-len(S))*'.' + S[:]
-    print("Изменённая строка", S)
+    print("Изменённая строка:", S)
