@@ -15,12 +15,12 @@ list3 = []
 for i in Voij:
     if i not in ReinaTur:
       list1.append(i)
-print("Туры отсутсвуют в РейнаТур: ", *list1)
+print("Туры отсутствуют в РейнаТур: ", *list1)
 
 for i in ReinaTur:
     if i not in Voij:
       list2.append(i)
-print("Туры отсутсвуют в Вояж: ", *list2)
+print("Туры отсутствуют в Вояж: ", *list2)
 
 for i in ReinaTur:
     if i in Voij:
