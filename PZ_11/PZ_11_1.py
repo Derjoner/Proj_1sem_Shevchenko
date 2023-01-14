@@ -48,23 +48,16 @@ for j in D:
 
 
 # Основная работа с файлами
-f1 = open('new_plus.txt', 'w')
+f1, f2 = open('new_plus.txt', 'w'), open('new_minus.txt', 'w')
 for x in A:
     f1.writelines(x)
     f1.write(" ")
-f1.close()
-f1 = open('new_plus.txt')
-print(f1.read())
-f1.close()
-
-f2 = open('new_minus.txt', 'w')
 for x in B:
     f2.writelines(x)
     f2.write(" ")
+f1.close()
 f2.close()
-f2 = open('new_minus.txt')
-print(f2.read())
-f2.close()
+
 
 f3 = open('new_sort.txt', 'w')
 f3.write("Элементы первого и второго файлов: ")
