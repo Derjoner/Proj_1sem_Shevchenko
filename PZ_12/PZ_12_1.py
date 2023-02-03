@@ -24,5 +24,5 @@ B[0], B[-1] = B[-1], B[0]
 for x in B:
   for y in x:
     C.append(y)
-
-print(A, C)
+    
+print("Данный список: ", A, "\nПеределанный список: ", C)
