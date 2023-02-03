@@ -10,4 +10,4 @@ B = []
 def abc(srt):
   yield from [x for x in srt if x in digits]
 
-print(list(abc(A)))
+print("Данная строка:", A, "\nИтог:", list(abc(A)))
