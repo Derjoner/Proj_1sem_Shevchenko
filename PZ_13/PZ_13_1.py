@@ -1,12 +1,13 @@
 import numpy as np
 
-B = []
-A = np.array([[1, 2, 3], [3, 4, 5], [6, 7, 8], [9, 10, 11]])
-
-B = A[-int((len(A)/2))::]
+A = np.random.randint(0, 20, (4, 4))
 
 def gener(lis):
-    for x in lis:
-        yield
+    yield from [item for subl in lis for item in subl]
 
-print(B)
+
+C = list(gener(A[-int((len(A)/2))::]))
+
+
+
+print("Данная матрица: \n", A, '\nСумма второй половины матрицы: ',  sum(C))
