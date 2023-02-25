@@ -1,5 +1,5 @@
-from .circle import *
-from .triangle import *
-from .square import *
+from .circle.code import *
+from .square.code import *
+from .triangle.code import *
 
 NAME = "Пакеты счёта фигур"
