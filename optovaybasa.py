@@ -3,7 +3,7 @@ from danye_bd import date_tovar, date_magaz, date_zayvka, date_kol, date_sostav
 
 with sq.connect('optovbd.db') as con: 
     cur = con.cursor()
-    cur.execute("DROP TABLE IF EXISTS tovars")
+    #cur.execute("DROP TABLE IF EXISTS tovars")
     cur.execute("""CREATE TABLE IF NOT EXISTS tovars(
     id_tov INTEGER PRIMARY KEY AUTOINCREMENT,
     nazvanie TEXT,
@@ -14,7 +14,7 @@ with sq.connect('optovbd.db') as con:
     
 with sq.connect('optovbd.db') as con: 
     cur = con.cursor()
-    cur.execute("DROP TABLE IF EXISTS magaz")
+    #cur.execute("DROP TABLE IF EXISTS magaz")
     cur.execute("""CREATE TABLE IF NOT EXISTS magaz(
     id_magaz INTEGER PRIMARY KEY AUTOINCREMENT,
     nazvanie TEXT,
@@ -25,7 +25,7 @@ with sq.connect('optovbd.db') as con:
     
 with sq.connect('optovbd.db') as con: 
     cur = con.cursor()
-    cur.execute("DROP TABLE IF EXISTS zayvka")
+    #cur.execute("DROP TABLE IF EXISTS zayvka")
     cur.execute("""CREATE TABLE IF NOT EXISTS zayvka(
     id_zayvka INTEGER PRIMARY KEY AUTOINCREMENT,
     id_magaz INTEGER,
@@ -36,7 +36,7 @@ with sq.connect('optovbd.db') as con:
     
 with sq.connect('optovbd.db') as con: 
     cur = con.cursor()
-    cur.execute("DROP TABLE IF EXISTS kolsclad")
+    #cur.execute("DROP TABLE IF EXISTS kolsclad")
     cur.execute("""CREATE TABLE IF NOT EXISTS kolsclad(
     id_sclad INTEGER PRIMARY KEY AUTOINCREMENT,
     id_tov INTEGER,
@@ -49,7 +49,7 @@ with sq.connect('optovbd.db') as con:
     
 with sq.connect('optovbd.db') as con: 
     cur = con.cursor()
-    cur.execute("DROP TABLE IF EXISTS sostav")
+    #cur.execute("DROP TABLE IF EXISTS sostav")
     cur.execute("""CREATE TABLE IF NOT EXISTS sostav(
     id_sostav INTEGER PRIMARY KEY AUTOINCREMENT,
     id_zayvka INTEGER,
@@ -110,6 +110,45 @@ print(result)
 
 with sq.connect('optovbd.db') as con: 
     cur = con.cursor()
-    cur.execute("") 
+    cur.execute("SELECT id_magaz FROM kolsclad WHERE kol < 500") 
     result = cur.fetchall()
 print(result)
+
+with sq.connect('optovbd.db') as con: 
+    cur = con.cursor()
+    cur.execute("UPDATE kolsclad SET kol=4999 WHERE id_tov = 4")
+    
+print("Задания 2 и 3 преподаватель разрешил не делать.")
+    
+with sq.connect('optovbd.db') as con: 
+    cur = con.cursor()
+    cur.execute("UPDATE magaz SET adres='Сорняк д21' WHERE id_magaz=(SELECT id_magaz FROM zayvka WHERE id_zayvka=8)")
+    
+with sq.connect('optovbd.db') as con: 
+    cur = con.cursor()
+    cur.execute("UPDATE zayvka SET data='2010-05-05' WHERE id_magaz = 1")
+    
+with sq.connect('optovbd.db') as con: 
+    cur = con.cursor()
+    cur.execute("UPDATE kolsclad SET kol=55555 WHERE (id_tov = 1) or (id_tov = 5)")
+
+with sq.connect('optovbd.db') as con: 
+    cur = con.cursor()
+    cur.execute("UPDATE tovars SET opisanie='Теперь наш мармелад производится по всему миру!' WHERE id_tov = 7")
+    cur.execute("UPDATE kolsclad SET kol=950 WHERE id_tov = 7")
+    
+with sq.connect('optovbd.db') as con: 
+    cur = con.cursor()
+    cur.execute("UPDATE kolsclad SET kol=((SELECT kol FROM kolsclad WHERE id_tov=(SELECT id_tov FROM sostav WHERE id_zayvka=9)) - (SELECT SUM(koli) FROM sostav WHERE id_tov=(SELECT id_tov FROM sostav WHERE id_zayvka=9))) WHERE id_tov=(SELECT id_tov FROM sostav WHERE id_zayvka=9)")    
+
+with sq.connect('optovbd.db') as con: 
+    cur = con.cursor()
+    cur.execute("UPDATE kolsclad SET kol=((SELECT kol FROM kolsclad WHERE id_tov=1) - (SELECT SUM(koli) FROM sostav WHERE id_tov=1)) WHERE id_tov=1")
+
+with sq.connect('optovbd.db') as con: 
+    cur = con.cursor()
+    cur.execute("UPDATE magaz SET nazvanie='В може бы', adres='Фупновычй д43 кв1' WHERE id_magaz=(SELECT id_magaz FROM zayvka WHERE id_zayvka = 2)")
+    
+with sq.connect('optovbd.db') as con: 
+    cur = con.cursor()
+    cur.execute("UPDATE magaz SET nazvanie='Новое название' WHERE id_magaz=")
